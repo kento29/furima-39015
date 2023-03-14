@@ -27,11 +27,21 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
-      it 'パスワードが半角英数字混合でなければ登録できない' do
+      it 'パスワードが英字のみのパスワードでは登録できない' do
         @user.password = 'abcdef'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
         end
+      it 'パスワードが数字のみのパスワードでは登録できない' do
+        @user.password = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
+      it '全角文字を含むパスワードでは登録できない' do
+        @user.password = 'ａbcdef'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = '123456a'
         @user.password_confirmation = '1234567a'
@@ -57,6 +67,26 @@ RSpec.describe User, type: :model do
         @user.first_name_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
+      end
+      it "苗字（カナ）に半角文字が含まれていると登録できない" do
+        @user.last_name_kana = 'ﾊﾗ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana Last_name_kana Full-width katakana characters")
+      end
+      it "名前（カナ）に半角文字が含まれていると登録できない" do
+        @user.first_name_kana = 'ﾕﾀｶ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana First_name_kana kana Full-width katakana characters")
+      end
+      it "苗字（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない" do
+        @user.last_name_kana = '原'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana Last_name_kana Full-width katakana characters")
+      end
+      it "名前（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない" do
+        @user.first_name_kana = 'ゆたか'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana First_name_kana kana Full-width katakana characters")
       end
       it "誕生日が空だと登録できない" do
         @user.user_birth_date = ''
