@@ -10,9 +10,9 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery
 
   validates :image, :name, :info, :price, presence: true
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :sales_status_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :shipping_fee_status_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :scheduled_delivery_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :sales_status_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :shipping_fee_status_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :scheduled_delivery_id, numericality: { other_than: 1, message: "can't be blank" }
 end

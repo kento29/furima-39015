@@ -60,17 +60,17 @@ RSpec.describe Item, type: :model do
       it '価格が299以下では登録できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
       it '価格が10,000,000以上では登録できない' do
         @item.price = '10,000,000'
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
       it '価格が全角では登録できない' do
         @item.price = '５００'
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
       it 'userが紐付いていないと保存できない' do
         @item.user = nil
