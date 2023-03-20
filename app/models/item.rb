@@ -20,7 +20,4 @@ class Item < ApplicationRecord
                             message: 'は、¥300~¥9,999,999の間のみ保存可能' }
   validates :price, numericality: { only_integer: true, message: 'は半角数値のみ保存可能' }
 
-  # def sold_out?
-  #   self.stock <= 0
-  # end
 end
