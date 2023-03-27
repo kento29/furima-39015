@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  has_many :orders
+  has_one :order
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -22,6 +22,6 @@ class Item < ApplicationRecord
   validates :price, numericality: { only_integer: true, message: 'は半角数値のみ保存可能' }
 
   def sold_out?
-    orders.present?
+    order.present?
   end
 end
