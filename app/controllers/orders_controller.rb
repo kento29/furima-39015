@@ -2,7 +2,11 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    @order_form = OrderForm.new
+    if @item.order_ids.present?
+      redirect_to root_path
+    else
+      @order_form = OrderForm.new
+    end
   end
 
   def create
