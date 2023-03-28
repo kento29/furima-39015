@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
+  has_one :order
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -20,4 +21,7 @@ class Item < ApplicationRecord
                             message: 'は、¥300~¥9,999,999の間のみ保存可能' }
   validates :price, numericality: { only_integer: true, message: 'は半角数値のみ保存可能' }
 
+  def sold_out?
+    order.present?
+  end
 end
