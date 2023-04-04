@@ -2,12 +2,22 @@ ja:
   activerecord:
     attributes:
       user:
-        nickname: "ニックネーム"
-        last_name: "姓"
-        first_name: "名"
-        last_name_kana: "姓（カナ）"
-        first_name_kana: "名（カナ）"
-        user_birth_date: "生年月日"
+        nickname: ニックネーム
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓（カナ）
+        first_name_kana: 名（カナ）
+        user_birth_date: 生年月日
+      item:
+        image: 商品画像
+        name: 商品名
+        info: 商品の説明
+        price: 価格
+        category_id: カテゴリー
+        sales_status_id: 商品の状態
+        shipping_fee_status_id: 配送料の負担
+        prefecture_id: 発送元の地域
+        scheduled_delivery_id: 発送までの日数
     errors:
       models:
         user:
@@ -22,4 +32,51 @@ ja:
               invalid: "全角カタカナで入力してください"
             first_name_kana:
               invalid: "全角カタカナで入力してください"
-          blank: "を入力してください"
+        item:
+          attributes:
+            image: 画像
+            category_id:
+              other_than: "を選択してください"
+            sales_status_id:
+              other_than: "を選択してください"
+            shipping_fee_status_id:
+              other_than: "を選択してください"
+            prefecture_id:
+              other_than: "を選択してください"
+            scheduled_delivery_id:
+              other_than: "を選択してください"
+
+  activemodel:
+    attributes:
+      order_form:
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        addresses: 番地
+        building_name: 建物名
+        phone_number: 電話番号
+        token: クレジットカード情報
+        user_id: ユーザーID
+        item_id: 商品ID
+    errors:
+      models:
+        order_form:
+          attributes:
+            postal_code:
+              blank: "を入力してください"
+              invalid: "は「3桁ハイフン4桁」の半角文字列で入力してください"
+            prefecture_id:
+              other_than: "を選択してください"
+            city:
+              blank: "を入力してください"
+            addresses:
+              blank: "を入力してください"
+            phone_number:
+              blank: "を入力してください"
+              invalid: "は10桁以上11桁以内の半角数字で入力してください"
+            token:
+              blank: "が正しくありません"
+            user_id:
+              blank: "が存在しません"
+            item_id:
+              blank: "が存在しません"
